@@ -1,14 +1,14 @@
 iD.Connection = function() {
 
     var event = d3.dispatch('authenticating', 'authenticated', 'auth', 'loading', 'load', 'loaded'),
-        url = 'http://www.openstreetmap.org',
+        url = 'http://osm.openaviationmap.org',
         connection = {},
         inflight = {},
         loadedTiles = {},
         oauth = osmAuth({
-            url: 'http://www.openstreetmap.org',
-            oauth_consumer_key: '5A043yRSEugj4DJ5TljuapfnrflWDte8jTOcWLlT',
-            oauth_secret: 'aB3jKq1TRsCOUrfOIZ6oQMEDmv2ptV76PA54NGLL',
+            url: 'http://osm.openaviationmap.org',
+            oauth_consumer_key: 'j9NMGmHTUQ3uW44gtJPmHfDUroPoLk6Kb6dJU1Av',
+            oauth_secret: 'd7WmxvbEzbBG0r33Odt0yTlwd6l6uMFSJgNWv147',
             loading: authenticating,
             done: authenticated
         }),
@@ -289,13 +289,13 @@ iD.Connection = function() {
 
         var s = projection.scale() * 2 * Math.PI,
             z = Math.max(Math.log(s) / Math.log(2) - 8, 0),
-            ts = 256 * Math.pow(2, z - 16),
+            ts = 256 * Math.pow(2, z - 10),
             origin = [
                 s / 2 - projection.translate()[0],
                 s / 2 - projection.translate()[1]];
 
         var tiles = d3.geo.tile()
-            .scaleExtent([16, 16])
+            .scaleExtent([10, 10])
             .scale(s)
             .size(dimensions)
             .translate(projection.translate())()
